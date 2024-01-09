@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
-class Controller extends BaseController {
-    public function contests() {
+class ContestController extends BaseController {
+    public function index() {
         // ...
     }
-    public function contest() {
+    public function create() {
         // ...
     }
-    public function games() {
+    public function store() {
         // ...
     }
-    public function game() {
+    public function edit() {
         // ...
     }
-    public function players() {
+    public function update() {
         // ...
     }
 }

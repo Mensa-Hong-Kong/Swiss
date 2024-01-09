@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger( "sn" )->nullable();
             $table->string( "name" );
             $table->string( "integral" );
+            $table->boolean( "withdraw" );
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class Player extends Authenticatable
         'sn',
         'name',
         'integral',
+        'is_withdraw',
     ];
     public function initiativeGames() {
         return $this->hasMany( Game::class, "initiative_id" );

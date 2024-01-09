@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContestController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "Controller@contests");
+Route::get('/contests/{contest}', "Controller@contest");
+Route::get('/contests/{contest}/games', "Controller@games");
+Route::get('/contests/{contest}/games/{game}', "Controller@game");
+Route::get('/contests/{contest}/players', "Controller@players");
 Route::prefix( "admin" )->name( "admin." )->group(
     function() {
+        Route::get('/', "AuthController@index");
+        Route::post('/auth', "AuthController@login");
+        Route::get('/auth', "AuthController@logout");
         Route::resource( "/contests", ContestController::class )
             ->except( [ "show", "destroy" ] )
             ->names( "contests" );
         Route::resource( "/contests/{contests}/games", GameController::class )
-            ->except( [ "show", "destroy" ] )
+            ->except( [ "show", "edit", "destroy" ] )
             ->names( "contests.games" );
         Route::resource( "/contests/{contests}/players", PlayerController::class )
-            ->except( [ "show", "destroy" ] )
+            ->except( [ "show", "edit", "destroy" ] )
             ->names( "contests.players" );
     }
 );
