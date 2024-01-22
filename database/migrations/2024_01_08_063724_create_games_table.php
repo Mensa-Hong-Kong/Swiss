@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger( "contest_id" );
             $table->integer( "game_number" );
-            $table->bigInteger( "game_number" );
             $table->bigInteger( "initiative_id" );
             $table->bigInteger( "gote_id" );
             $table->bigInteger( "winner_id" );

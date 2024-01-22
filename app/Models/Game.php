@@ -21,7 +21,6 @@ class Game extends Authenticatable
     protected $fillable = [
         'contest_id',
         'game_number',
-        'game_number',
         'initiative_id',
         'gote_id',
         'winner_id',
