@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::table('contests', function (Blueprint $table) {
+            $table->dateTime( "id_card_number" )->nullable();
             $table->string('username');
             $table->string('password');
-            $table->string('is_support_admin');
-            $table->timestamps();
+            $table->string('email');
         });
     }
 
@@ -29,6 +28,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('contests', function (Blueprint $table) {
+            $table->dropColumn( "id_card_number" );
+            $table->dropColumn( "username" );
+            $table->dropColumn( "password" );
+            $table->dropColumn( "email" );
+        });
     }
 };

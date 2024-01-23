@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Contest;
+use App\Http\Requests\Admin\ContestRequest;
 
 class ContestController extends BaseController {
     protected $contest;
@@ -18,7 +19,7 @@ class ContestController extends BaseController {
                 }
                 abort( 404 );
             }
-        )->only( [ "edit", "update" ] );
+        )->only( [ "update" ] );
     }
     public function index() {
         $contests = Contest::sortable()
@@ -29,14 +30,18 @@ class ContestController extends BaseController {
     public function create() {
         return view( "admin.contest.create" );
     }
-    public function store() {
-        // ...
+    public function store( ContestRequest $request ) {
+        $create = [
+            'name' => $request[ "name" ],
+            'number_of_game' => $request[ "name" ],
+        ];
+        Contest::create( $create );
     }
-    public function edit( Contest $contest ) {
-        return view( "admin.contest.edit" )
-            ->with( "contest", $contest );
-    }
-    public function update() {
-        // ...
+    public function update( ContestRequest $request ) {
+        $create = [
+            'name' => $request[ "name" ],
+            'number_of_game' => $request[ "name" ],
+        ];
+        Contest::create( $create );
     }
 }

@@ -21,18 +21,31 @@ Route::get('/contests/{contest}', "Controller@contest");
 Route::get('/contests/{contest}/games', "Controller@games");
 Route::get('/contests/{contest}/games/{game}', "Controller@game");
 Route::get('/contests/{contest}/players', "Controller@players");
+Route::prefix( "player" )->name( "player." )->group(
+    function() {
+        Route::resource( "/profile", UserController::class )
+            ->only( [ "index", "edit", "update" ] )
+            ->names( "profile" );
+        Route::get( "/qr-code", "ContestController@qrCode" );
+        Route::resource( "/confirm-result", GameController::class )
+            ->only( [ "edit", "update" ] )
+            ->names( "confirm-result" );
+        Route::get( "/check-in", "GameController@checkIn" )
+            ->names( "check-in" );
+    }
+);
 Route::prefix( "admin" )->name( "admin." )->group(
     function() {
         Route::get('/', "AuthController@index");
         Route::post('/auth', "AuthController@login");
         Route::get('/auth', "AuthController@logout");
-        Route::resource( "/contests", ContestController::class )
-            ->except( [ "show", "destroy" ] )
+        Route::resource( "/contests", AdminContestController::class )
+            ->except( [ "show", "edit", "destroy" ] )
             ->names( "contests" );
-        Route::resource( "/contests/{contests}/games", GameController::class )
+        Route::resource( "/contests/{contests}/games", AdminGameController::class )
             ->except( [ "show", "edit", "destroy" ] )
             ->names( "contests.games" );
-        Route::resource( "/contests/{contests}/players", PlayerController::class )
+        Route::resource( "/contests/{contests}/players", AdminPlayerController::class )
             ->except( [ "show", "edit", "destroy" ] )
             ->names( "contests.players" );
     }
