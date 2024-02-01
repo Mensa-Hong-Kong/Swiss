@@ -24,11 +24,11 @@ class ContestController extends BaseController {
     public function index() {
         $contests = Contest::sortable()
             ->paginate();
-        return view( "admin.contest.index" )
+        return view( "admin.contests.index" )
             ->with( "contests", $contests );
     }
     public function create() {
-        return view( "admin.contest.create" );
+        return view( "admin.contests.create" );
     }
     public function store( ContestRequest $request ) {
         $create = [
@@ -37,11 +37,11 @@ class ContestController extends BaseController {
         ];
         Contest::create( $create );
     }
-    public function update( ContestRequest $request ) {
+    public function update( ContestRequest $request, Contest $contest ) {
         $create = [
             'name' => $request[ "name" ],
             'number_of_game' => $request[ "name" ],
         ];
-        Contest::create( $create );
+        $contest->update( $create );
     }
 }

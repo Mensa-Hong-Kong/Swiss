@@ -21,6 +21,7 @@ class Player extends Authenticatable
         'contest_id',
         'sn',
         'name',
+        "id_card_number",
         'integral',
         'is_withdraw',
     ];
