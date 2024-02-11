@@ -20,9 +20,12 @@ class Player extends Authenticatable
     protected $fillable = [
         'contest_id',
         'sn',
+        "username",
+        "password",
         'name',
-        "id_card_number",
+        "passport",
         'integral',
+        'sop',
         'is_withdraw',
     ];
     public function initiativeGames() {

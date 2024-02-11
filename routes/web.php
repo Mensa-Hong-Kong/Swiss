@@ -16,11 +16,11 @@ use App\Http\Controllers\PlayerController;
 |
 */
 
-Route::get('/', "Controller@contests");
-Route::get('/contests/{contest}', "Controller@contest");
-Route::get('/contests/{contest}/games', "Controller@games");
-Route::get('/contests/{contest}/games/{game}', "Controller@game");
-Route::get('/contests/{contest}/players', "Controller@players");
+Route::get('/', "HomeController@contests");
+Route::get('/contests/{contest}', "HomeController@contest");
+Route::get('/contests/{contest}/games', "HomeController@games");
+Route::get('/contests/{contest}/games/{game}', "HomeController@game");
+Route::get('/contests/{contest}/players', "HomeController@players");
 Route::prefix( "player" )->name( "player." )->group(
     function() {
         Route::resource( "/profile", UserController::class )
@@ -31,7 +31,7 @@ Route::prefix( "player" )->name( "player." )->group(
             ->only( [ "edit", "update" ] )
             ->names( "confirm-result" );
         Route::get( "/check-in", "GameController@checkIn" )
-            ->names( "check-in" );
+            ->name( "check-in" );
     }
 );
 Route::prefix( "admin" )->name( "admin." )->group(

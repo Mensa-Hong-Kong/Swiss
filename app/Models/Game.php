@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Player;
+use App\Models\GameHasPlayer;
 
 class Game extends Authenticatable
 {
@@ -21,18 +21,9 @@ class Game extends Authenticatable
     protected $fillable = [
         'contest_id',
         'game_number',
-        'initiative_id',
-        'gote_id',
-        'winner_id',
     ];
-    public function initiative() {
-        return $this->hasOne( Player::class, "id", "initiative_id" );
-    }
-    public function gote() {
-        return $this->hasOne( Player::class, "id", "initiative_id" );
-    }
-    public function winner() {
-        return $this->hasOne( Player::class, "id", "initiative_id" );
+    public function tables() {
+        return $this->hasMany( GameHasPlayer::class, "game_id", "id" );
     }
 
 }

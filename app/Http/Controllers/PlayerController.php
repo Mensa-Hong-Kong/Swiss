@@ -5,7 +5,7 @@ use App\Models\Contest;
 use App\Models\Player;
 use App\Http\Requests\Admin\PlayerRequest;
 
-use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\Controller as BaseController;
 
 class PlayerController extends BaseController {
     public function index( Contest $contest ) {

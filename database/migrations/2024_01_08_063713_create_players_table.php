@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->bigInteger( "contest_id" );
             $table->bigInteger( "sn" )->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->string( "name" );
-            $table->string( "integral" );
+            $table->string( "passport" )->nullable();
+            $table->integer( "integral" )->default(0);
+            $table->integer( "sop" )->default(0);
             $table->boolean( "withdraw" );
             $table->timestamps();
         });
